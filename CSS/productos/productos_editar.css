@@ -1,0 +1,17 @@
+.item__img__ID{
+    margin: 0pX;
+}
+.item__img__nombre{
+    font-weight: 700;
+    color: #2A7AE4;
+}
+#editar,#eliminar{
+    margin: 0 10px ;
+}
+#editar:hover,#eliminar:hover{
+   transform: scale(1.1);
+   -webkit-transform: scale(1.1);
+   -moz-transform: scale(1.1);
+   -ms-transform: scale(1.1);
+   -o-transform: scale(1.1);
+}

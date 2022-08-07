@@ -1,0 +1,31 @@
+.login{
+    background-color: #E5E5E5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 48vh;
+}
+.login form{
+    margin: 2rem;
+    width: 420px ;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.login__input{
+    background-color: #ffffffcc;
+    padding: 0.5rem;
+    font-size: 12px;
+    color: #A2A2A2;
+}
+.login__btn{
+    margin: auto;
+    width: 109px;
+    font-size: 16px;
+}
+@media (min-width:770px) {
+    .login__btn{
+        width: 100%;
+    }
+}

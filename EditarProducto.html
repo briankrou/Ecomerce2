@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Open+Sans:ital@1&family=PT+Sans:ital@1&family=Raleway:wght@300;500;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="./CSS/normalize.css">
+    <link rel="stylesheet" href="/CSS/base.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="./CSS/menu/menu.css">
+    <link rel="stylesheet" href="/CSS/base.css">
+    <link rel="stylesheet" href="./CSS/productos/productos.css">
+    <link rel="stylesheet" href="./CSS/footer/footer.css">
+    <link rel="stylesheet" href="./CSS/footer/formulario.css">
+    <link rel="stylesheet" href="./CSS/footer/footer-menu.css">
+    <link rel="stylesheet" href="./CSS/banner/banner.css">
+    <link rel="stylesheet" href="./CSS/PRODUCTOSHTML/btn-productos.css">
+    <link rel="stylesheet" href="./CSS/PRODUCTOSHTML/formularioAgregarProductos.css">
+    <link rel="stylesheet" href="./CSS/productos/productos_editar.css">
+    <title>Editar producto</title>
+</head>
+<header>
+    <nav class="contenedor__menu container">
+        <div class="menu">
+            <a href="/index.html" class="menu__logo">
+                <img src="./img/logo.png" alt="">
+                <figcaption class="menu__logo__letras"><span>Alura</span>Geek</figcaption>
+            </a>
+            <div class="menu__shear">
+                <input class="menu__shear__input" type="text" name="" id="" placeholder="¿Que deseas buscar?">
+                <i class="menu__shear__icon"><img src="./img/iconBuscar.png" alt=""></i>
+            </div>
+        </div>
+    </nav>
+</header>
+<body>
+
+    <main style="background-color: #E5E5E5;" >
+<section class="contenedorPrincipal__AgregarProductos container" >
+    <form class="formularioAgregarProductos" action="">
+        <h3 class="formularioAgregarProductos__titulo">Editar producto</h3>
+        <p  data-agregar-producto-id> </p>
+
+        <div class="formularioAgregarProductos__input__contenedor">
+            <label class="formularioAgregarProductos__input__label" for="URL imagen para cargar">URL de imagen</label>
+            <input  class="formularioAgregarProductos__input formularioAgregarProductos__input-file" type="text" data-agregar-producto-url-Img required>
+        </div>
+        <div class="formularioAgregarProductos__input__contenedor">
+            <label class="formularioAgregarProductos__input__label" for="nombre categoria">Categoria</label>
+            <input class="formularioAgregarProductos__input" type="text" data-agregar-producto-categoria required>
+        </div>
+        <div class="formularioAgregarProductos__input__contenedor">
+            <label class="formularioAgregarProductos__input__label" for="nombre producto">Nombre del producto</label>
+            <input class="formularioAgregarProductos__input" type="text" data-agregar-producto-nombre required>
+        </div>
+        <div class="formularioAgregarProductos__input__contenedor">
+            <label class="formularioAgregarProductos__input__label" for="precio de producto">Precio del producto</label>
+            <input class="formularioAgregarProductos__input" type="number" placeholder="00000" data-agregar-producto-precio required>
+
+        </div>
+        <textarea  class="formularioAgregarProductos__input textareaDescripcion" name="" id="descripcionProducto" cols="30" rows="10" placeholder="Descripción del producto" required></textarea>
+       
+            <input id="btn_guardarCambo" class="btn__agregarProducto" type="button" value="Guardar cambios">
+    </form>
+</section>
+
+    </main>
+    <footer>
+        <section class="footer">
+            <div class="footer__contenedor container">
+                <nav class="footer__menu">
+                    <a href="/index.html" class="menu__logo">
+                        <img src="./img/logo.png" alt="">
+                        <figcaption class="menu__logo__letras"><span>Alura</span>Geek</figcaption>
+                    </a>
+                    <ul class="footer__menu__lista">
+                        <li class="footer__menu__link"><a href="">Quienes somos</a></li>
+                        <li class="footer__menu__link"><a href="">Politica de privacidad</a></li>
+                        <li class="footer__menu__link"><a href="">Programa de fidelidad</a></li>
+                        <li class="footer__menu__link"><a href="">Nuestras Tiendas</a></li>
+                        <li class="footer__menu__link"><a href="">Quiero ser franquiciado</a></li>
+                        <li class="footer__menu__link"><a href="">Anuncie aqui</a></li>
+                    </ul>
+        
+                </nav>
+                <form action="" class="formulario">
+                    <h3 class="formulario__titulo">Habla con nosotros</h3>
+                    <div class="formulario__nombre">
+                        <label class="formulario__label" for="">Nombre</label>
+                        <input class="formulario__input" type="text" >
+                    </div>
+                    <div class="formulario__texArea">
+                        <textarea class="formulario__input-texArea" name="" id="" cols="30" rows="10" placeholder="Escribe tu mensaje"></textarea>
+                    </div>
+                    <div aclass="formulario__btn">Enviar mensaje</div>
+                </form>
+            </div>
+        </section>
+        <section class="copy">
+            <p>Desarrollado por Brayan Guevara<br>2022</p>
+        </section>
+
+
+    </footer>
+    <script src="./JS/EditarProductos.js"></script>
+</body>
+</html>

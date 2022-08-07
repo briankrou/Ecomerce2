@@ -1,0 +1,33 @@
+.footer{
+    background-color:#EAF2FD;
+    padding: 1rem;
+}
+.footer__contenedor{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+}
+.footer__menu{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.copy{
+    font-size: 16px;
+    text-align: center;
+    color: #464646;
+    margin: 1rem;
+}
+@media (max-width:500px) {
+    .footer__contenedor{
+        grid-template-columns: 1fr;
+        text-align: center;
+    
+    }
+    .footer__contenedor{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

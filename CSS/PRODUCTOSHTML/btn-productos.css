@@ -1,0 +1,11 @@
+.btnProductos{
+    width: max-content;
+    background-color: #2A7AE4;
+    color: white;
+    padding:  0.5rem 1rem;
+}
+.btnProductos:hover{
+
+    color: white;
+
+}
