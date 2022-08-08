@@ -9,9 +9,14 @@ const nombreinput=document.querySelector('[ data-agregar-producto-nombre]');
 const precioinput=document.querySelector('[data-agregar-producto-precio]');
 const descripcioninput=document.querySelector('#descripcionProducto')
 const btnGuardar=document.querySelector("#btn_guardarCambo")
+const btnBuscarID=document.querySelector('[data-buscar-id]')
+
+btnBuscarID.addEventListener("click",()=>{
+
+    buscarid(idinput.value)
+})
 
 
-buscarid(id)
 console.log(id)
 function buscarid(id){
     contenedorCategorias.forEach(element => {
@@ -19,7 +24,6 @@ function buscarid(id){
             element.productos.forEach(element =>{
                 if(element.id==id){
                     console.log(element)
-                    idinput.textContent="ID: "+element.id;
                     categoriainput.textContent="Categoria: "+element.categoria;
                     urlinput.value=element.imgurl;
                     nombreinput.value=element.nombre;

@@ -40,7 +40,12 @@
 <section class="contenedorPrincipal__AgregarProductos container" >
     <form class="formularioAgregarProductos" action="">
         <h3 class="formularioAgregarProductos__titulo">Editar producto</h3>
-        <p  data-agregar-producto-id> </p>
+       
+        <div style="display: flex; ">
+            <p style="display: flex; align-items: center; margin:0 ;">ID: </p>
+            <input type="tel" data-agregar-producto-id> 
+            <input type="button" value="Buscar" data-buscar-id="">
+        </div>
         <p data-agregar-producto-categoria></p>
 
         <div class="formularioAgregarProductos__input__contenedor">
