@@ -12,7 +12,7 @@ const btnGuardar=document.querySelector("#btn_guardarCambo")
 
 
 buscarid(id)
-
+console.log(id)
 function buscarid(id){
     contenedorCategorias.forEach(element => {
         element.categoria.forEach(element =>{
