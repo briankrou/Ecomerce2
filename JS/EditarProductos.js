@@ -1,5 +1,5 @@
 const id= JSON.parse(localStorage.getItem("id"))
-const contenedorCategorias= JSON.parse(localStorage.getItem("contenedorCategorias"))
+
 
 
 const idinput=document.querySelector('[data-agregar-producto-id]');
@@ -19,6 +19,7 @@ btnBuscarID.addEventListener("click",()=>{
 
 console.log(id)
 function buscarid(id){
+    const contenedorCategorias= JSON.parse(localStorage.getItem("contenedorCategorias"))
     contenedorCategorias.forEach(element => {
         element.categoria.forEach(element =>{
             element.productos.forEach(element =>{
