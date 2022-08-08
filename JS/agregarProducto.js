@@ -153,8 +153,6 @@ function crearProducto(id,url,categoria,nombre,precio,descripcion){
 
 
 
-crearProducto("002","./img/002.png","Medicamentos","productos 8","5000","Descripcion producto 8")
-
 
 
 btnAgregar.addEventListener('click',(evento) =>{
