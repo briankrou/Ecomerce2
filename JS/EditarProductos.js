@@ -1,103 +1,51 @@
-const idProducto=document.querySelector('[data-agregar-producto-id]');
-const urlImagen=document.querySelector('[data-agregar-producto-url-Img]');
-const categori=document.querySelector('[data-agregar-producto-categoria]');
-const nombres=document.querySelector('[data-agregar-producto-nombre]');
-const preci=document.querySelector('[data-agregar-producto-precio]');
-const describir=document.querySelector("#descripcionProducto");
+const id= JSON.parse(localStorage.getItem("id"))
+const contenedorCategorias= JSON.parse(localStorage.getItem("contenedorCategorias"))
 
 
+const idinput=document.querySelector('[data-agregar-producto-id]');
+const urlinput=document.querySelector('[data-agregar-producto-url-Img]');
+const categoriainput=document.querySelector('[data-agregar-producto-categoria]');
+const nombreinput=document.querySelector('[ data-agregar-producto-nombre]');
+const precioinput=document.querySelector('[data-agregar-producto-precio]');
+const descripcioninput=document.querySelector('#descripcionProducto')
+const btnGuardar=document.querySelector("#btn_guardarCambo")
 
 
-const agregar=document.querySelector("#btn_guardarCambo");
+buscarid(id)
 
-
-
-
-let ideditar= JSON.parse(localStorage.getItem("dato"))
-
-console.log("recibe el "+ ideditar)
-
-ideditar =ideditar.slice()
-
-
-console.log("recibe el "+ ideditar)
-
-const arreglo= JSON.parse(localStorage.getItem("productos"))
-
-
-
-arreglo.forEach(element => {
-    element.contenedorCategorias.forEach(element=>{
-        element.contedorProductos.forEach(element=>{
-            console.log(element)
-            if(element.id==ideditar){
-                idProducto.textContent="ID: "+element.id;
-                urlImagen.setAttribute( "value",element.url)
-                categori.setAttribute( "value",element.categoria)
-                nombres.setAttribute("value",element.nombre)
-                preci.setAttribute("value",element.precio)
-                describir.innerHTML=element.descripcion;
-    
-            }
-        })
-    })
-});
-
-
-
-function editarProducto(){
-             
-            Eid=idProducto.textContent.slice(4);
-            Eurl=urlImagen.value;
-            Ecategoria=categori.value;
-            Enombre=nombres.value;
-            Eprecio=preci.value;
-            Edescripcion=describir.value;
-
-        arreglo.forEach(element => {
-            element.contenedorCategorias.forEach(element=>{
-                element.contedorProductos.forEach(element=>{
-                    if(element.id=="ID: "+Eid){
-                        element.id=Eid;
-                        element.url=Eurl;
-                        element.categoria=Ecategoria;
-                        element.nombre= Enombre;
-                        element.precio=Eprecio;
-                        element.descripcion=Edescripcion;
-                        localStorage.setItem("productos",JSON.stringify(arreglo))      
-                    }
-                })
+function buscarid(id){
+    contenedorCategorias.forEach(element => {
+        element.categoria.forEach(element =>{
+            element.productos.forEach(element =>{
+                if(element.id==id){
+                    console.log(element)
+                    idinput.textContent="ID: "+element.id;
+                    categoriainput.textContent="Categoria: "+element.categoria;
+                    urlinput.value=element.imgurl;
+                    nombreinput.value=element.nombre;
+                    precioinput.value=element.precio;
+                    descripcioninput.value=element.descripcion;
+                }
             })
         })
+    });
 }
 
 
 
-
-
-agregar.addEventListener("click",()=>{
-
-    let mensaje="Faltan algunos campos\n"+"URL: "+urlImagen.value+"\nCategoria: "+categori.value;
-
-
-    if(urlImagen.value!=""){
-        if(preci.value!=""){
-            if(describir.value!=""){
-                if(nombres.value!=""){
-                    if(categori.value!=""){
-                        editarProducto()
-                        window.location.href = "./productos.html";
-                    }else{
-                        alert(mensaje)
-                    }
+btnGuardar.addEventListener('click',(evento)=>{
+    contenedorCategorias.forEach(element => {
+        element.categoria.forEach(element =>{
+            element.productos.forEach(element =>{
+                if(element.id==id){
+                    element.umgurl=urlinput.value;
+                    element.nombre=nombreinput.value;
+                    element.precio=precioinput.value;
+                    element.descripcion=descripcioninput.value;
+                    localStorage.setItem('contenedorCategorias',JSON.stringify(contenedorCategorias))
                 }
-            }else{
-                alert(mensaje)
-            }
-        }else{
-            alert(mensaje)
-        }
-    }else{
-        alert(mensaje)
-    }
+            })
+        })
+    });
+    
 })

@@ -1,216 +1,190 @@
-const idProducto=document.querySelector('[data-agregar-producto-id]');
-const describir=document.querySelector("#descripcionProducto");
-const preci=document.querySelector('[data-agregar-producto-precio]');
-const urlImagen=document.querySelector('[data-agregar-producto-url-Img]');
-const nombres=document.querySelector('[data-agregar-producto-nombre]');
-const categori=document.querySelector('[data-agregar-producto-categoria]');
-const agregar=document.querySelector("#btn_agregarProducto");
+import { producto } from "./producto.js";
+
+const contenedorCategorias= JSON.parse(localStorage.getItem("contenedorCategorias"))
+
+const idinput=document.querySelector('[data-agregar-producto-id]');
+const urlinput=document.querySelector('[data-agregar-producto-url-Img]');
+const categoriainput=document.querySelector('[data-agregar-producto-categoria]');
+const nombreinput=document.querySelector('[ data-agregar-producto-nombre]');
+const precioinput=document.querySelector('[data-agregar-producto-precio]');
+const descripcioninput=document.querySelector('#descripcionProducto')
+const btnAgregar=document.querySelector("#btn_agregarProducto")
+
+
+nombreinput.addEventListener("blur",evento=>{
+    nombreinput.value=(nombreinput.value[0].toUpperCase())+(nombreinput.value.slice(1));
+ 
+})
+categoriainput.addEventListener("blur",evento=>{
+    categoriainput.value=(categoriainput.value[0].toUpperCase())+(categoriainput.value.slice(1));
+})
 
 
 
-class letra{
-    letra;
-    contenedorCategorias=[];
-    constructor(letra){
-        this.letra=letra;
-    }
-}
-
-const a=new letra("A");const b=new letra("B");const c=new letra("C");const d=new letra("D");const e=new letra("E");
-const f=new letra("F");const g=new letra("G");const h=new letra("H");const i=new letra("I");const j=new letra("J");
-const k=new letra("K");const l=new letra("L");const m=new letra("M");const n=new letra("N");const ñ=new letra("Ñ");
-const o=new letra("O");const p=new letra("P");const q=new letra("Q");const r=new letra("R");const s=new letra("S");
-const t=new letra("T");const u=new letra("U");const v=new letra("V");const w=new letra("W");const x=new letra("X");
-const y=new letra("Y");const z=new letra("Z");
-
-
-if( JSON.parse(localStorage.getItem("productos"))==null){
-    localStorage.setItem("productos",JSON.stringify([a,b,c,d,e,f,g,h,i,j,k,l,m,n,ñ,o,p,q,r,s,t,u,v,w,x,y,z]))
-}
-
-const arregloCategorias= JSON.parse(localStorage.getItem("productos"))
-
-console.log(arregloCategorias)
-
-const abc = arregloCategorias;
-
-
-class categoria{
-    nombreCategoria;
-    contedorProductos=[];
-    constructor(nombre){
-        this.nombreCategoria=nombre;
-    }
-}
-
-class producto{
-    id;
-    url;
-    nombre;
-    precio;
-    descripcion;
-    categoria;
-    
-    constructor(url,categoria,nombre,precio,descripcion,id){
-        this.url=url;
-        this.nombre=nombre;
-        this.precio=precio;
-        this.descripcion=descripcion;
-        this.categoria=categoria;
-        this.id=id;
-    }
-}
+console.log(contenedorCategorias)
 
 
 
-function crearCategoria(nombre){
-    if(nombre!=""){
-        if(buscarPorCategoria(nombre)==false){
-            abc.forEach(Element=>{
-                if(Element.letra==nombre[0]){
-                    const nueva=new categoria(nombre)
-                    Element.contenedorCategorias.push(nueva);
-                    localStorage.setItem("productos",JSON.stringify(abc))
+
+
+//Funcion que regresa el objeto categoria si lo encuentra si no retorna falso
+
+function buscarCategoria(categoria){
+    let respuesta=false;
+    contenedorCategorias.forEach(element=>{
+        if(element.letra==categoria[0]){
+            element.categoria.forEach(element=>{
+                if(element.nombre==categoria){
+                    respuesta = element;
                 }
             })
-        }else{
-            console.log("ya esta la categoria "+ nombre);
         }
-    }
-}
-
-
-
-
-function buscarPorProducto(producto){//retorna el objeto producto
-
-    let respuesta=false;
-
-        abc.forEach(Element=>{
-            Element.contenedorCategorias.forEach(Element=>{
-                Element.contedorProductos.forEach(Element=>{
-
-                    if(respuesta==false){
-                        if(Element.nombre==producto){
-                            respuesta=Element;
-                        }
-                    }
-
-                })
-            })        
-        })
-
+    })
     return respuesta;
 }
 
+//funcion que crear la categoria
 
-
-
-function buscarPorCategoria(nombre){///retorna el objeto categoria
-    let respuesta=false;
-
-    if(nombre!=""){
-     
-        abc.forEach(Element=>{
-
-            if(Element.letra==nombre[0]){
-                Element.contenedorCategorias.forEach(Element=>{
-
-                    if(respuesta==false){
-                        if(Element.nombreCategoria==nombre){
-
-                            return respuesta=Element; 
-           
-                       }
+function crearCategoria(categoria){
+    if(buscarCategoria(categoria)==false){
+        contenedorCategorias.forEach(element=>{
+            if(element.letra==categoria[0]){
+                class nuevacategoria{
+                    nombre;
+                    productos=[]
+                    constructor(nombre){
+                        this.nombre=nombre;
                     }
-
-                })
+                }
+                const nuevo =new nuevacategoria(categoria)
+                element.categoria.push(nuevo)
+                localStorage.setItem('contenedorCategorias',JSON.stringify(contenedorCategorias))
             }
         })
-
+    }else{
+        console.log("ya esta el La Categoria")
     }
+}
 
+
+//funcion que recibe un objeto categoria y busca dentro de el el producto retorna falso o verdadero si lo encuentra 
+
+
+
+
+function buscarProducto(contenedorCategoria,nombre){
+    let respuesta=false;
+        contenedorCategoria.productos.forEach(element=>{
+            if(element.nombre==nombre){
+                respuesta = true
+            }
+})
     return respuesta;
+}
+
+
+
+
+//funcion que busca el id retorna si esta o no esta 
+function buscarID(id){
+
+
+let respuesta=false;
+ contenedorCategorias.forEach(element=>{
+    element.categoria.forEach(element=>{
+
+        if(element.productos==null){
+
+        }else{
+            element.productos.forEach(element=>{
+                console.log("id es: "+element)
+                if(element.id==id){
+                    console.log("id igual")
+                    respuesta = true;
+                }
+            });
+        }
+
+    });
+
+ });
+    
+ return respuesta;
 
 }
 
-console.log(buscarPorCategoria("Aseo"))
 
 
 
-function crearProducto(url,categoria,nombre,precio,descripcion,id){
+
+
+//funcion que crea el producto
+
+function crearProducto(id,url,categoria,nombre,precio,descripcion){
+
     let respuesta=false;
+    console.log("creando producto")
+    const nuevo = new producto(id,url,categoria,nombre,precio,descripcion)
+    const buscaCategoria=buscarCategoria(categoria);
 
 
-
-    const nuevo=new producto(url,categoria,nombre,precio,descripcion,id)
-
-    if(buscarPorProducto(nombre)==false){
-
-        if(buscarPorCategoria(categoria)==false){
-
-            crearCategoria(categoria)
-            buscarPorCategoria(categoria).contedorProductos.push(nuevo)
-            localStorage.setItem("productos",JSON.stringify(abc))
-            respuesta=true;
-           
+ 
+        if(buscaCategoria!=false){
+            if(buscaCategoria.productos.length==0){
+                buscaCategoria.productos.push(nuevo);
+                respuesta =true;
+            }else{
+                if(buscarProducto(buscaCategoria,nombre)==false){
+                    buscaCategoria.productos.push(nuevo)
+                    respuesta =true;
+                }
+            }
         }else{
+            crearCategoria(categoria);
+            buscarCategoria(categoria).productos.push(nuevo);
+            respuesta =true;
+        }
+    
 
-            buscarPorCategoria(categoria).contedorProductos.push(nuevo)
-            localStorage.setItem("productos",JSON.stringify(abc))
-            respuesta=true;
+    localStorage.setItem('contenedorCategorias',JSON.stringify(contenedorCategorias))
+
+    return respuesta;
+}
+
+
+
+crearProducto("002","./img/002.png","Medicamentos","productos 8","5000","Descripcion producto 8")
+
+
+
+btnAgregar.addEventListener('click',(evento) =>{
+
+    evento.preventDefault();
+
+    if(idinput.value!=""&urlinput.value!=""&categoriainput.value!=""&nombreinput.value!=""&precioinput.value!=""&descripcioninput.value!=""){
+        
+        if(buscarID(idinput.value)==false){
+
+            if(crearProducto(idinput.value,urlinput.value,categoriainput.value,nombreinput.value,precioinput.value,descripcioninput.value)==true){
+                idinput.value="";
+                urlinput.value ="",
+                categoriainput.value="",
+                nombreinput.value="",
+                precioinput.value="",
+                descripcioninput.value="";
+    
+            }else{
+                console.log("Ya esta el producto")
+    
+            }
+
+
+        }else{
+            alert("ya esta el id")
         }
 
     }else{
-
-        ///ya esta el producto en laguna categoria  
+        alert("faltan campos")
     }
-
-    return respuesta;
-}
-
-
-
-let mensaje="Faltan algunos campos\n"+"URL: "+urlImagen.value+"\nCategoria: "+categori.value;
-
-
-
-
-
-
-agregar.addEventListener("click",()=>{
-    
-
-        
-
-        if(urlImagen.value!=""){
-            if(preci.value!=""){
-                if(describir.value!=""){
-                    if(nombres.value!=""){
-                        if(categori.value!=""){
-                            console.log("creado.................................");
-
-                            crearProducto(urlImagen.value,categori.value,nombres.value,preci.value,describir.value,idProducto.value)
-
-
-                        }else{
-                            alert(mensaje)
-                        }
-                
-
-                    }
-                }else{
-                    alert(mensaje)
-                }
-        
-
-            }else{
-                alert(mensaje)
-            }
-    
-        }else{
-            alert(mensaje)
-        }
-
-})
-
+   
+});
