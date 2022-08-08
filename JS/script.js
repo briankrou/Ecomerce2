@@ -21,4 +21,6 @@ if(contenedorCategorias==null){
     const X=new principal("X");const Y=new principal("Y");const Z=new principal("Z");
     abc.push(A,B,C,D,E,F,G,H,I,J,K,L,M,N,Ñ,O,P,Q,R,S,T,U,V,W,X,Y,Z)
     localStorage.setItem('contenedorCategorias',JSON.stringify(abc))
+
+    console.log("creando ABC")
 }
